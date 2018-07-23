@@ -33,9 +33,28 @@ export class InfoWindow extends React.Component {
     renderInfoWindow() {
         let {google} = this.props;
         let {title} = this.props;
+        let { detail } = this.state;
+        let { twitter } = this.state;
+        let { url } = this.state;
+
+        var template = `
+            <h2>${title}</h2>
+        `;
+
+        if (detail) {
+            template += `<p>${detail}</p>`;
+        }
+
+        if (twitter) {
+            template += `<p>Twitter: <a target="_blank" href="https://twitter.com/${twitter}">@${twitter}</a></p>`;
+        }
+
+        if (url) {
+            template += `<p>Website: <a target="_blank" href="${url}">${url}</a></p>`;
+        }
 
         this.infowindow = new google.maps.InfoWindow({
-            content: '<h1>' + title + '</h1>'
+            content: template
         });
     }
 
