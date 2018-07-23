@@ -6,8 +6,8 @@ export const PLACES = [
     new Place('3', 'Parlament', 47.507476, 19.046693, 'sight'),
     new Place('4', 'Toldy Cinema', 47.503835, 19.054623, 'business'),
     new Place('5', 'Mazi Greek Kitchen', 47.507391, 19.052537, 'restaurant'),
-    new Place(),
-    //TODO add places
+    
+    //TODO add places new Place(),
 ];
 
 export const PlaceCategories = [
