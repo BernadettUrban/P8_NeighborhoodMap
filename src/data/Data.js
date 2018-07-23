@@ -1,8 +1,12 @@
 import { Place } from './Place';
 
 export const PLACES = [
-    new Place//('1', 'name', 45.4130133, -75.7040369, 'restaurant'),
-    new Place(''),
+    new Place('1', 'Hold utcai piac',47.504828 , 19.052649, 'restaurant'),
+    new Place('2', 'Westend', 47.513452, 19.059390, 'mall'),
+    new Place('3', 'Parlament', 47.507476, 19.046693, 'sight'),
+    new Place('4', 'Toldy Cinema', 47.503835, 19.054623, 'business'),
+    new Place('5', 'Mazi Greek Kitchen', 47.507391, 19.052537, 'restaurant'),
+    new Place(),
     //TODO add places
 ];
 
