@@ -16,6 +16,7 @@ class App extends Component {
 
     this.state = { 
       searchValue: '',
+      showSideBar: false,
       places: PLACES,
       filterPlaces: [],
       filterCategories: []
@@ -31,6 +32,12 @@ class App extends Component {
       this.updatePlacesByPlaces();
     }
     
+    updatePlacesByPlaces() {
+    if (this.state.filterPlaces.length === 0) {
+      this.setState({ places: PLACES });
+      return;
+    }
+      
     let places = PLACES.filter((item) => {
       return this.state.filterPlaces.includes(item.key);
     });
@@ -137,19 +144,35 @@ class App extends Component {
         text={item.title} />
     });
   }
+                               
+  toggleSidebar() {
+    this.setState({
+      showSideBar: !this.state.showSideBar
+    });
+  }
+
+  sideBarStatus() {
+    if (this.state.showSideBar) {
+      return "side-bar";
+    }
+    return "side-bar side-bar-closed";
+  }
 
   render() {
     return (
       <div>
         <MapContainer places={this.state.places} />
-        <div className="side-bar">
-          <h3 class="title">Neighborhood Map</h3>
-            <div class="help">
+        <div className={this.sideBarStatus()}>
+          <div onClick={() => {this.toggleSidebar()}} class="side-bar-toggle">
+            <i class="fas fa-bars"></i>
+          </div>
+          <h3 className="app-title">Neighborhood Map</h3>
+          <div className="help">
               You can filter by a <b>Category</b> or by <b>Place</b> name.
             </div>
-            <div class="toolbar-title">Categories</div>
+            <div className="toolbar-title">Categories</div>
             {this.renderCategoriesFilter()}
-            <div class="toolbar-title">Places</div>
+            <div className="toolbar-title">Places</div>
             {this.renderPlacesFilter()}
         </div>
       </div>
