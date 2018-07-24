@@ -78,31 +78,59 @@ body {
   /* Sidebar */
   
   .side-bar {
-    background-color: #ffffff;
+    background-color: rgba( 255, 255, 255, 1);
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 17%;
+    overflow-x: scroll;
+    overflow-y: hidden;
     box-shadow: 1px 1px 1px rgba(1,1,1,0.2);
   }
   
-  
-  /* Toggle Button */
-  
-  .toggle {
+ 
+      
+  .title {
     user-select: none;
     cursor: pointer;
     background-color: #ffffff;
     padding: 20px;
     border: 1px solid #cccccc;
     border-bottom: none;
+    font-size: 1.7em;
+    color: #69448E;
+    font-family: 'Bungee', cursive;
   }
+
+.help {
+    padding: 0 20px 20px 20px;
+    font-size: 1.1em;
+    color: #999999;
+}
   
+.toolbar-title {
+    padding: 20px 20px 5px 5px;
+    font-size: 1.2em;
+    color: #aaaaaa;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.toggle {
+    user-select: none;
+    cursor: pointer;
+    background-color: #ffffff;
+    padding: 20px;
+    color: #333333;
+}
+    
+    
   .toggle:last-child {
-    border-bottom: 1px solid #cccccc;
+    
   }
   
   .toggle-off {
-    background-color: #ffffff;
+    //background-color: #ffffff;
     color: gray;
   }
   
