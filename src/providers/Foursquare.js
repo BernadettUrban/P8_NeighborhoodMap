@@ -1,8 +1,8 @@
 // Foursquare API Provider
 
 const URL = 'https://api.foursquare.com/v2/';
-const CLIENT_ID = '0H3XYMPPPADQ03U1FW5DHBK2BCAJM5JSVEVSIVLOPTNUJVM0';
-const CLIENT_SECRET = 'F3YSWRXGV3XSYWMYZN0SXIDLCFOE334RGNYTFF2OOZMM3DSX';
+const CLIENT_ID = '';
+const CLIENT_SECRET = '';
 
 const headers = {
     'Accept': 'application/json',
