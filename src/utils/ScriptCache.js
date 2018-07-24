@@ -25,14 +25,13 @@ export const ScriptCache = (function(global) {
       if (!scriptMap.has(key)) {
         let tag = document.createElement('script');
         let promise = new Promise((resolve, reject) => {
-          let resolved = false,
-              errored = false,
-              body = document.getElementsByTagName('body')[0];
+        let body = document.getElementsByTagName('body')[0];
 
           tag.type = 'text/javascript';
           tag.async = false; // Load in order
 
           const cbName = `loaderCB${counter++}${Date.now()}`;
+          // eslint-disable-next-line
           let cb;
 
           let handleResult = (state) => {
@@ -41,12 +40,8 @@ export const ScriptCache = (function(global) {
               if (state === 'loaded') {
                 stored.resolved = true;
                 resolve(src);
-                // stored.handlers.forEach(h => h.call(null, stored))
-                // stored.handlers = []
               } else if (state === 'error') {
                 stored.errored = true;
-                // stored.handlers.forEach(h => h.call(null, stored))
-                // stored.handlers = [];
                 reject(evt)
               }
 
@@ -68,7 +63,7 @@ export const ScriptCache = (function(global) {
 
           // Pick off callback, if there is one
           if (src.match(/callback=CALLBACK_NAME/)) {
-            src = src.replace(/(callback=)[^\&]+/, `$1${cbName}`)
+            src = src.replace(/(callback=)[^&]+/, `$1${cbName}`)
             cb = window[cbName] = tag.onload;
           } else {
             tag.addEventListener('load', tag.onload)
@@ -100,6 +95,6 @@ export const ScriptCache = (function(global) {
 
     return Cache;
   }
-})(window)
+})(window);
 
 export default ScriptCache;
