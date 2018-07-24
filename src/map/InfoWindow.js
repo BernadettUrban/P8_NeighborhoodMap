@@ -14,8 +14,8 @@ export class InfoWindow extends React.Component {
 
     componentDidMount() {
         let { place } = this.props;
-        // let resp = place.getDetail();
-        // console.log(resp);
+         let resp = place.getDetail();
+         console.log(resp);
         place.getDetail().then((response) => {
             console.log(response);
             let venue = response.response.venue;

@@ -10,7 +10,7 @@ export const GoogleApi = function(opts) {
     const URL = 'https://maps.googleapis.com/maps/api/js';
   
     const googleVersion = '3.22';
-    let script = null;
+    //let script = null;
     let google = window.google = null;
     let loading = false;
     let channel = null;

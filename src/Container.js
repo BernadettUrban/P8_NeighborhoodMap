@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+//import React, { Component } from 'react';
+import React from 'react';
 
 import { Map } from './map/Map';
 import GoogleApiComponent from './utils/GoogleApiComponent';
@@ -39,5 +40,5 @@ export class Container extends React.Component {
 }
 
 export default GoogleApiComponent({
-    apiKey: '' // TODO: add API key
+    apiKey: 'AIzaSyDwaAOJYdBMw68dGW1hHjn6B65ua0f_6XU' 
 })(Container)

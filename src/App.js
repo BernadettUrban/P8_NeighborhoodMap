@@ -31,11 +31,12 @@ class App extends Component {
     if (prevState.filterPlaces.length !== this.state.filterPlaces.length) {
       this.updatePlacesByPlaces();
     }
-    
-    updatePlacesByPlaces() {
+  }
+
+  updatePlacesByPlaces(){
     if (this.state.filterPlaces.length === 0) {
       this.setState({ places: PLACES });
-      return;
+      return
     }
       
     let places = PLACES.filter((item) => {
@@ -164,7 +165,7 @@ class App extends Component {
         <MapContainer places={this.state.places} />
         <div className={this.sideBarStatus()}>
           <div onClick={() => {this.toggleSidebar()}} class="side-bar-toggle">
-            <i class="fas fa-bars"></i>
+            <i className="fas fa-bars"></i>
           </div>
           <h3 className="app-title">Neighborhood Map</h3>
           <div className="help">
