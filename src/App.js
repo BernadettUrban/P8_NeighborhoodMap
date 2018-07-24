@@ -35,7 +35,7 @@ class App extends Component {
 
   updatePlacesByPlaces(){
     if (this.state.filterPlaces.length === 0) {
-      this.setState({ places: PLACES });
+      this.setState({ places:this.getPlacesByCategory() });
       return
     }
       
@@ -164,7 +164,7 @@ class App extends Component {
       <div>
         <MapContainer places={this.state.places} />
         <div className={this.sideBarStatus()}>
-          <div onClick={() => {this.toggleSidebar()}} class="side-bar-toggle">
+          <div onClick={() => {this.toggleSidebar()}} className="side-bar-toggle">
             <i className="fas fa-bars"></i>
           </div>
           <h3 className="app-title">Neighborhood Map</h3>
