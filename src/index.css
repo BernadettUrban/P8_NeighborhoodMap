@@ -91,7 +91,7 @@ body {
   
  
       
-  .title {
+  .app-title {
     user-select: none;
     cursor: pointer;
     background-color: #ffffff;
