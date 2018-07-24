@@ -67,7 +67,7 @@ class App extends Component {
   
   updatePlacesByCategories() {
      this.setState({
-       ilterPlaces: []
+       filterPlaces: []
      });
     let places = this.getPlacesByCategory();
     this.setState({ places: places });
