@@ -6,12 +6,26 @@ export class ToggleButton extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.state = { toggled: false }; 
     }
+    
+    isToggled() {
+        // Return the parent value
+        if (this.props.toggleStateManagedByParent) {
+            return this.props.toggled;
+        }
+        return this.state.toggled;
+    }
 
     handleClick(e) {
         let isToggled = !this.state.toggled;
-        this.setState({
-        toggled: isToggled
-        });
+        
+        if (!this.props.toggleStateManagedByParent) {   
+            isToggled = !this.state.toggled;
+            this.setState({
+                toggled: isToggled
+            });
+        }
+        
+        
         if (isToggled) {
         this.props.onToggleOn(this.props.id);
         } else {
@@ -25,13 +39,13 @@ export class ToggleButton extends React.Component {
 
     render() {
 
-        if (this.state.toggled) {
-        return (
-            <div onClick={this.handleClick} className="toggle toggle-on">
-            <i className={this.getIconClass()}></i>
-            <span> {this.props.text}</span>
-            </div>
-        );
+        if (this.isToggled()) {
+            return (
+                <div onClick={this.handleClick} className="toggle toggle-on">
+                <i className={this.getIconClass()}></i>
+                <span> {this.props.text}</span>
+                </div>
+            );
         }
 
         return (
