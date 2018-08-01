@@ -52,7 +52,6 @@ export class InfoWindow extends React.Component {
                 foursquareLoaded: true
             });
          }).catch(() => {
-            // console.log('Error on access foursquare API');
             this.setState({
                 foursquareError: true
             });
@@ -60,7 +59,6 @@ export class InfoWindow extends React.Component {
     }
     componentDidUpdate(prevProps, prevState) {
         let {show} = this.props;
-        //let { place } = this.props;
 
         if (prevProps.marker !== this.props.marker) {
             this.renderInfoWindow();
@@ -156,6 +154,10 @@ export class InfoWindow extends React.Component {
 
         this.infowindow = new google.maps.InfoWindow({
             content: templateContainer
+        });
+        
+        this.infowindow.addListener('closeclick', (e) => {
+            this.props.onInfowindowClose(this.state.place);
         });
     }
 
