@@ -53,15 +53,16 @@ export class Marker extends React.Component {
 
         this.marker = new google.maps.Marker(options);
         this.marker.addListener('click', (e) => {
-            this.onMarkerClick(this.state.showInfoWindow);
+            this.onMarkerClick();
         });
     }
 
-    onMarkerClick(showInfoWindow) {
-        let show = !showInfoWindow;
+    onMarkerClick() {
+        this.props.onMarkerClick(this.props.place);
+        /*let show = !showInfoWindow;
         this.setState({
             showInfoWindow: show
-        });
+        });*/
     }
 
     render() {
@@ -72,7 +73,7 @@ export class Marker extends React.Component {
                     marker={this.marker} 
                     google={this.props.google}
                     map={this.props.map}
-                    show={this.state.showInfoWindow}
+                    show={this.props.showInfoWindow}
                     />
             </div>
         );
