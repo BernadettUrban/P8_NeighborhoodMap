@@ -48,7 +48,13 @@ export class InfoWindow extends React.Component {
                 url: url,
                 phone: phone,
                 formattedPhone: formattedPhone,
-                photo: photoUrl
+                photo: photoUrl,
+                foursquareLoaded: true
+            });
+         }).catch(() => {
+            // console.log('Error on access foursquare API');
+            this.setState({
+                foursquareError: true
             });
         });
     }
@@ -85,6 +91,8 @@ export class InfoWindow extends React.Component {
         let { facebook } = this.state;
         let { instagram } = this.state;
         let { url } = this.state;
+        let { foursquareLoaded } = this.state;
+        let { foursquareError } = this.state;
         //let { phone } = this.state;
         //let { formattedPhone } = this.state;
         let { photo } = this.state;
@@ -133,7 +141,11 @@ export class InfoWindow extends React.Component {
         `;
         template += socialContainer;
         
-        
+         if (foursquareLoaded) {
+            template += `<p class="iw-powered">Powered by <a target="_blank" href="https://foursquare.com/">Foursquare</a>.</p>`
+        } else if (foursquareError) {
+            template += `<p class="iw-powered">Information from <a target="_blank" href="https://foursquare.com/">Foursquare</a> couldn't be loaded.</p>`
+        }
         
        var templateContainer = `
         <div class="iw-container">
