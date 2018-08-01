@@ -13,9 +13,11 @@ class App extends Component {
     this.onCategoryToggleOff = this.onCategoryToggleOff.bind(this);
     this.onPlaceToggleOn = this.onPlaceToggleOn.bind(this);
     this.onPlaceToggleOff = this.onPlaceToggleOff.bind(this);
+    this.onSelectPlace = this.onSelectPlace.bind(this);
 
     this.state = { 
       searchValue: '',
+      selectedPlace: null,
       showSideBar: false,
       places: PLACES,
       filterPlaces: [],
@@ -158,11 +160,22 @@ class App extends Component {
     }
     return "side-bar side-bar-closed";
   }
+      
+  onSelectPlace(place) {
+    this.setState({
+      selectedPlace: place
+    });
+  }
+
 
   render() {
     return (
       <div>
-        <MapContainer places={this.state.places} />
+        <MapContainer 
+            places={this.state.places}
+            selectedPlace={this.state.selectedPlace}
+            onSelectPlace={this.onSelectPlace}
+        />
         <div className={this.sideBarStatus()}>
           <div onClick={() => {this.toggleSidebar()}} className="side-bar-toggle">
             <i className="fas fa-bars"></i>
