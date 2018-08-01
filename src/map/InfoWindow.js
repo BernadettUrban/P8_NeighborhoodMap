@@ -8,7 +8,11 @@ export class InfoWindow extends React.Component {
             title: this.props.title,
             detail: '',
             twitter: '',
-            url: ''
+            url: '',
+            phone: '',
+            phoneFormatted: '',
+            foursquareLoaded: false,
+            foursquareError: false
         }
     }
 
