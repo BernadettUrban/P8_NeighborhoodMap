@@ -14,6 +14,7 @@ class App extends Component {
     this.onPlaceToggleOn = this.onPlaceToggleOn.bind(this);
     this.onPlaceToggleOff = this.onPlaceToggleOff.bind(this);
     this.onSelectPlace = this.onSelectPlace.bind(this);
+    this.onInfowindowClose = this.onInfowindowClose.bind(this);
 
     this.state = { 
       searchValue: '',
@@ -30,21 +31,17 @@ class App extends Component {
       this.updatePlacesByCategories();
     }
 
-    if (prevState.filterPlaces.length !== this.state.filterPlaces.length) {
+    if (prevState.selectedPlace !== this.state.selectedPlace) {
       this.updatePlacesByPlaces();
     }
   }
 
   updatePlacesByPlaces(){
-    if (this.state.filterPlaces.length === 0) {
+    if (this.state.selectedPlace === null) {
       this.setState({ places:this.getPlacesByCategory() });
       return
     }
-      
-    let places = PLACES.filter((item) => {
-      return this.state.filterPlaces.includes(item.key);
-    });
-    this.setState({ places: places });
+     
   }
 
   getPlacesByCategory() {
@@ -77,16 +74,13 @@ class App extends Component {
     
 
   addPlaceToFilter(value) {
-    var currentFilter = this.state.filterPlaces;
-    currentFilter.push(value);
-    this.setState({ filterPlaces: currentFilter });
+    this.setState({ selectedPlace: value });
   }
 
   removePlaceFromFilter(value) {
-    var currentFilter = this.state.filterPlaces;
+    
     this.setState({
-      filterPlaces: currentFilter.filter((item) => {
-        return item !== value;
+       selectedPlace: null
       })
     });
   }
@@ -117,11 +111,17 @@ class App extends Component {
 
   onCategoryToggleOn(value) {
     this.addCategoryToFilter(value);
-    this.updatePlacesByCategories();
+    
   }
 
   onCategoryToggleOff(value) {
     this.removeCategoryFromFilter(value);
+  }
+
+  placeIsSelected(item) {
+    if (this.state.selectedPlace === null)
+      return false;
+    return this.state.selectedPlace.key === item.key;
   }
 
   renderPlacesFilter() {
@@ -129,8 +129,10 @@ class App extends Component {
       return <ToggleButton
         key={item.key}
         onToggleOn={this.onCategoryToggleOn} 
-        onToggleOff={this.onCategoryToggleOff} 
-        id={item.key} 
+        onToggleOff={this.onCategoryToggleOff}
+        toggleStateManagedByParent={true}
+        toggled={this.placeIsSelected(item)} 
+        id={item}
         icon={item.icon} 
         text={item.title} />
     });
@@ -141,8 +143,9 @@ class App extends Component {
       return <ToggleButton
         key={item.id}
         onToggleOn={this.onToggleOn} 
-        onToggleOff={this.onToggleOff} 
-        id={item.id} 
+        onToggleOff={this.onToggleOff}
+        toggleStateManagedByParent={false} 
+        id={item.key} 
         icon={item.icon} 
         text={item.title} />
     });
@@ -167,6 +170,11 @@ class App extends Component {
     });
   }
 
+  onInfowindowClose(place) {
+    this.setState({
+      selectedPlace: null
+    });
+  }
 
   render() {
     return (
@@ -175,6 +183,7 @@ class App extends Component {
             places={this.state.places}
             selectedPlace={this.state.selectedPlace}
             onSelectPlace={this.onSelectPlace}
+            onInfowindowClose={this.onInfowindowClose}
         />
         <div className={this.sideBarStatus()}>
           <div onClick={() => {this.toggleSidebar()}} className="side-bar-toggle">
