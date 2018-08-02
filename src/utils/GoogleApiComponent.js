@@ -47,6 +47,7 @@ export const wrapper = (options) => (WrappedComponent) => {
           }
         });
       }
+    }
           
 
     componentWillMount() {

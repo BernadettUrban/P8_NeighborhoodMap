@@ -78,10 +78,8 @@ class App extends Component {
   }
 
   removePlaceFromFilter(value) {
-    
     this.setState({
        selectedPlace: null
-      })
     });
   }
 
