@@ -1,0 +1,219 @@
+/* Sidebar */
+
+.sb-header {
+    background-color: var(--sb-background);
+    box-shadow: 0px 1px 3px rgba(1,1,1,0.2);
+    text-align: left;
+    padding: 20px 5px 20px 15px;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    width: 100vw;
+}
+
+.sb-detail {
+    background-color: var(--sb-background);
+    box-shadow: 1px 1px 1px rgba(1,1,1,0.2);
+    height: 100vh;
+    padding: 70px 0 60px 0;
+    z-index: 9998;
+    position: absolute;
+    overflow: auto;
+    overflow-x: hidden;
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+
+
+/* Sidebar Components */
+
+.sb-app-title {
+    display: inline-block;
+    color: var(--primary-color);
+    font-size: 1.2em;
+    line-height: 20px;
+    font-family: 'Bungee', cursive;
+    user-select: none;
+    margin-left: 20px;
+}
+
+
+/* 
+    Hamburguer icon and animation
+    Source: https://codepen.io/designcouch/pen/Atyop 
+*/
+
+.sb-menu {
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.sb-menu span {
+    display: block;
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    background: var(--primary-color);
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .25s ease-in-out;
+    -moz-transition: .25s ease-in-out;
+    -o-transition: .25s ease-in-out;
+    transition: .25s ease-in-out;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.sb-menu span:nth-child(1) {
+    top: 0px;
+}
+
+.sb-menu span:nth-child(2),.sb-menu span:nth-child(3) {
+    top: 10px;
+}
+
+.sb-menu span:nth-child(4) {
+    top: 20px;
+}
+
+.sb-help {
+    padding: 30px 20px 20px 20px;
+    font-size: 1.1em;
+    color: var(--sb-caption-color);
+}
+
+.sb-caption {
+    padding: 20px 20px 5px 5px;
+    font-size: 1.2em;
+    color: var(--sb-caption-color);
+    border-bottom: 1px solid #efefef;
+}
+
+
+/* Toggle Button */
+.sb-toggle {
+    user-select: none;
+    cursor: pointer;
+    padding: 15px;
+    color: #333333;
+    -webkit-transition: .2s ease-in-out;
+    -moz-transition: .2s ease-in-out;
+    -o-transition: .2s ease-in-out;
+    transition: .2s ease-in-out;
+}
+
+.sb-toggle.off {
+    color: #333333;
+}
+
+.sb-toggle.on {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.sb-detail.closed {
+    margin-left: -2000px;
+}
+
+/* Sidebar closed */
+
+.opened .sb-menu span:nth-child(1) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+}
+
+.opened .sb-menu span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.opened .sb-menu span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.opened .sb-menu span:nth-child(4) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+}
+
+
+
+/* Responsive Sidebar */
+
+@media (max-width: 320px) {
+    .sb-detail.opened {
+        width: var(--sb-open-width-xxs);
+    }
+}
+
+@media (min-width: 320.01px) and (max-width: 375px) {
+    .sb-detail.opened {
+        width: var(--sb-open-width-xs);
+    }
+}
+
+@media (min-width: 375.01px) and (max-width: 425px) {
+    .sb-detail.opened {
+        width: var(--sb-open-width-sm);
+    }
+}
+
+@media (min-width: 425.01px) and (max-width: 768px) {
+    .sb-detail.opened {
+        width: var(--sb-open-width-md);
+    }
+}
+
+@media (min-width: 768.01px) and (max-width: 992px) {
+    .sb-detail.opened {
+        width: var(--sb-open-width-lg);
+    }
+}
+
+@media (min-width: 992.01px) and (max-width: 1024px) {
+    .sb-detail.opened {
+        width: var(--sb-open-width-xl);
+    }
+}
+
+@media (min-width: 1024.01px) and (max-width: 1440px) {
+    .sb-detail.opened {
+        width: var(--sb-open-width-xxl);
+    }
+}
+
+@media (min-width: 1440.01px) {
+    .sb-detail.opened {
+        width: var(--sb-open-width-xxxl);
+    }
+}
