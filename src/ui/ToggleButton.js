@@ -27,9 +27,9 @@ export class ToggleButton extends React.Component {
         
         
         if (isToggled) {
-        this.props.onToggleOn(this.props.id);
+            this.props.onToggleOn(this.props.id);
         } else {
-        this.props.onToggleOff(this.props.id);
+            this.props.onToggleOff(this.props.id);
         }
     }
 
