@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MapContainer from './Container';
 import ToggleButton from './ui/ToggleButton';
+import SidebarMenu from './ui/SidebarMenu';
 
 import { PLACES } from './data/Data';
 import { CATEGORIES } from './data/Data';
