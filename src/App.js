@@ -3,7 +3,7 @@ import MapContainer from './Container';
 import ToggleButton from './ui/ToggleButton';
 
 import { PLACES } from './data/Data';
-import { PlaceCategories } from './data/Data';
+import { CATEGORIES } from './data/Data';
 
 class App extends Component {
 
@@ -57,7 +57,7 @@ class App extends Component {
     }
 
     let places = PLACES.filter((item) => {
-      return this.state.filterCategories.includes(item.type);
+      return this.state.filterCategories.includes(item.type.key);
     });
     
     
@@ -139,9 +139,9 @@ class App extends Component {
    }
 
   renderCategoriesFilter() {
-    return PlaceCategories.map((item, index) => {
+    return CATEGORIES.map((item, index) => {
       return <ToggleButton
-        key={item.id}
+        key={item.key}
         onToggleOn={this.onToggleOn} 
         onToggleOff={this.onToggleOff}
         toggleStateManagedByParent={false} 
