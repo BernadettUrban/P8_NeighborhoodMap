@@ -17,12 +17,9 @@ export class InfoWindow extends React.Component {
     }
 
     componentDidMount() {
-        let { place } = this.props;
-         
+        let { place } = this.props;  
         place.getDetail().then((response) => {
-            
             let venue = response.response.venue;
-
             let { name } = venue;
             let { description } = venue;
             let { twitter } = venue.contact;
