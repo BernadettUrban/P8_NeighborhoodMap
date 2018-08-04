@@ -62,7 +62,7 @@ export class Container extends React.Component {
         }
 
         let centerMap = { lat: 47.507391 , lng: 19.052537 };
-
+    
         return (
             <Map style={style} centerMap={centerMap} google={this.props.google}>
                 {this.renderMarkers()}
