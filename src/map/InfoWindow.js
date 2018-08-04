@@ -17,12 +17,9 @@ export class InfoWindow extends React.Component {
     }
 
     componentDidMount() {
-        let { place } = this.props;
-         
+        let { place } = this.props;  
         place.getDetail().then((response) => {
-            
             let venue = response.response.venue;
-
             let { name } = venue;
             let { description } = venue;
             let { twitter } = venue.contact;
@@ -51,14 +48,14 @@ export class InfoWindow extends React.Component {
                 photo: photoUrl,
                 foursquareLoaded: true
             });
-         }).catch(() => {
+        }).catch(() => {
             this.setState({
                 foursquareError: true
             });
         });
     }
     componentDidUpdate(prevProps, prevState) {
-        let {show} = this.props;
+        let { show } = this.props;
 
         if (prevProps.marker !== this.props.marker) {
             this.renderInfoWindow();
@@ -82,8 +79,8 @@ export class InfoWindow extends React.Component {
     }
 
     renderInfoWindow() {
-        let {google} = this.props;
-        let {title} = this.props;
+        let { google } = this.props;
+        let { title } = this.props;
         let { description } = this.state;
         let { twitter } = this.state;
         let { facebook } = this.state;
@@ -125,7 +122,7 @@ export class InfoWindow extends React.Component {
         }
 
         if (url) {
-             websiteTemplate = `<a title="Website" class="iw-website"  target="_blank" href="${url}">${url}<i class="fas fa-globe"></i></a>`;
+             websiteTemplate = `<a title="Website" class="iw-website" target="_blank" href="${url}"><i class="fas fa-globe"></i></a>`;;
         }
         
         
@@ -153,7 +150,8 @@ export class InfoWindow extends React.Component {
         `;
 
         this.infowindow = new google.maps.InfoWindow({
-            content: templateContainer
+            content: templateContainer,
+            maxWidth: 250
         });
         
         this.infowindow.addListener('closeclick', (e) => {

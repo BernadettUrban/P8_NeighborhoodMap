@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import MapContainer from './Container';
 import ToggleButton from './ui/ToggleButton';
+import SidebarMenu from './ui/SidebarMenu';
 
 import { PLACES } from './data/Data';
-import { PlaceCategories } from './data/Data';
+import { CATEGORIES } from './data/Data';
 
 class App extends Component {
 
@@ -36,13 +37,14 @@ class App extends Component {
     }
   }
 
-  updatePlacesByPlaces(){
+  /*updatePlacesByPlaces() {
     if (this.state.selectedPlace === null) {
-      this.setState({ places:this.getPlacesByCategory() });
-      return
+      this.setState({ places: this.getPlacesByCategory() });
+      return;
     }
+  }*/
      
-  }
+  
 
   getPlacesByCategory() {
     if (this.state.filterCategories.length === 0) {
@@ -57,7 +59,7 @@ class App extends Component {
     }
 
     let places = PLACES.filter((item) => {
-      return this.state.filterCategories.includes(item.type);
+      return this.state.filterCategories.includes(item.type.key);
     });
     
     
@@ -100,7 +102,7 @@ class App extends Component {
   
     onPlaceToggleOn(value) {
     this.addPlaceToFilter(value);
-    this.updatePlacesByPlaces();
+    //this.updatePlacesByPlaces();
   }
 
   onPlaceToggleOff(value) {
@@ -109,7 +111,7 @@ class App extends Component {
 
   onCategoryToggleOn(value) {
     this.addCategoryToFilter(value);
-    
+    this.updatePlacesByCategories();
   }
 
   onCategoryToggleOff(value) {
@@ -137,9 +139,9 @@ class App extends Component {
    }
 
   renderCategoriesFilter() {
-    return PlaceCategories.map((item, index) => {
+    return CATEGORIES.map((item, index) => {
       return <ToggleButton
-        key={item.id}
+        key={item.key}
         onToggleOn={this.onToggleOn} 
         onToggleOff={this.onToggleOff}
         toggleStateManagedByParent={false} 
@@ -155,11 +157,11 @@ class App extends Component {
     });
   }
 
-  sideBarStatus() {
+  sideBarStatus(cls) {
     if (this.state.showSideBar) {
-      return "side-bar";
+      return cls + " opened";
     }
-    return "side-bar side-bar-closed";
+    return cls + " closed";
   }
       
   onSelectPlace(place) {
@@ -177,28 +179,28 @@ class App extends Component {
   render() {
     return (
       <div>
+        <div className={this.sideBarStatus('sb-header')}>
+            <SidebarMenu onClick={() => {this.toggleSidebar()}} />
+            <div className="sb-app-title">Neighborhood Map</div>
+          </div>
+          <div className={this.sideBarStatus('sb-detail')}>
+            <div className="sb-help">
+              You can filter by a <b>Category</b> or by <b>Place's</b> name.
+            </div>
+        <div className="sb-caption">Categories</div>
+          {this.renderCategoriesFilter()}
+          <div className="sb-caption">Places</div>
+          {this.renderPlacesFilter()}
+        </div>
         <MapContainer 
             places={this.state.places}
             selectedPlace={this.state.selectedPlace}
             onSelectPlace={this.onSelectPlace}
             onInfowindowClose={this.onInfowindowClose}
         />
-        <div className={this.sideBarStatus()}>
-          <div onClick={() => {this.toggleSidebar()}} className="side-bar-toggle">
-            <i className="fas fa-bars"></i>
-          </div>
-          <h3 className="app-title">Neighborhood Map</h3>
-          <div className="help">
-              You can filter by a <b>Category</b> or by <b>Place</b> name.
-            </div>
-            <div className="toolbar-title">Categories</div>
-            {this.renderCategoriesFilter()}
-            <div className="toolbar-title">Places</div>
-            {this.renderPlacesFilter()}
-        </div>
       </div>
     );
   }
 }
 
-export default App
+export default App;
