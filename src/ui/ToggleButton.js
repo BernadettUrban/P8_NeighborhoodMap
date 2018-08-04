@@ -16,7 +16,7 @@ export class ToggleButton extends React.Component {
     }
 
     handleClick(e) {
-        let isToggled = !this.state.toggled;
+        let isToggled = !this.props.toggled;
         
         if (!this.props.toggleStateManagedByParent) {   
             isToggled = !this.state.toggled;
@@ -41,7 +41,7 @@ export class ToggleButton extends React.Component {
 
         if (this.isToggled()) {
             return (
-                <div onClick={this.handleClick} className="toggle toggle-on">
+                <div onClick={this.handleClick} className="sb-toggle on">
                 <i className={this.getIconClass()}></i>
                 <span> {this.props.text}</span>
                 </div>
@@ -49,7 +49,7 @@ export class ToggleButton extends React.Component {
         }
 
         return (
-        <div onClick={this.handleClick} className="toggle toggle-off">
+        <div onClick={this.handleClick} className="sb-toggle off">
         <i className={this.getIconClass()}></i>
         <span> {this.props.text}</span>
         </div>

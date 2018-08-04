@@ -80,7 +80,7 @@ export class InfoWindow extends React.Component {
 
     renderInfoWindow() {
         let { google } = this.props;
-        let { title } = this.props;
+        let { title } = this.state;
         let { description } = this.state;
         let { twitter } = this.state;
         let { facebook } = this.state;
@@ -122,7 +122,7 @@ export class InfoWindow extends React.Component {
         }
 
         if (url) {
-             websiteTemplate = `<a title="Website" class="iw-website" target="_blank" href="${url}"><i class="fas fa-globe"></i></a>`;;
+             websiteTemplate = `<a title="Website" class="iw-website" target="_blank" href="${url}"><i class="fas fa-globe"></i></a>`;
         }
         
         

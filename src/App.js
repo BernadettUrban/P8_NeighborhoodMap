@@ -48,26 +48,18 @@ class App extends Component {
     if (this.state.filterCategories.length === 0) {
       return PLACES;
     }
-  }
-
-  updatePlaces() {
-    if (this.state.filterCategories.length === 0) {
-      this.setState({ places: PLACES });
-      return;
-    }
 
     let places = PLACES.filter((item) => {
       return this.state.filterCategories.includes(item.type.key);
     });
     
-    
-     return places;
+    return places;
   }
   
   updatePlacesByCategories() {
-     this.setState({
-       filterPlaces: []
-     });
+    this.setState({
+      filterPlaces: []
+    });
     let places = this.getPlacesByCategory();
     this.setState({ places: places });
   }
@@ -79,7 +71,7 @@ class App extends Component {
 
   removePlaceFromFilter(value) {
     this.setState({
-       selectedPlace: null
+      selectedPlace: null
     });
   }
 
@@ -98,9 +90,8 @@ class App extends Component {
     });
   }
   
-    onPlaceToggleOn(value) {
+  onPlaceToggleOn(value) {
     this.addPlaceToFilter(value);
-    //this.updatePlacesByPlaces();
   }
 
   onPlaceToggleOff(value) {
@@ -126,22 +117,22 @@ class App extends Component {
     return this.getPlacesByCategory().map((item, index) => {
       return <ToggleButton
         key={item.key}
-        onToggleOn={this.onCategoryToggleOn} 
-        onToggleOff={this.onCategoryToggleOff}
+        onToggleOn={this.onPlaceToggleOn} 
+        onToggleOff={this.onPlaceToggleOff}
         toggleStateManagedByParent={true}
         toggled={this.placeIsSelected(item)} 
         id={item}
         icon={item.icon} 
         text={item.title} />
     });
-   }
+  }
 
   renderCategoriesFilter() {
     return CATEGORIES.map((item, index) => {
       return <ToggleButton
         key={item.key}
-        onToggleOn={this.onToggleOn} 
-        onToggleOff={this.onToggleOff}
+        onToggleOn={this.onCategoryToggleOn} 
+        onToggleOff={this.onCategoryToggleOff}
         toggleStateManagedByParent={false} 
         id={item.key} 
         icon={item.icon} 
@@ -178,24 +169,24 @@ class App extends Component {
     return (
       <div>
         <div className={this.sideBarStatus('sb-header')}>
-            <SidebarMenu onClick={() => {this.toggleSidebar()}} />
-            <div className="sb-app-title">Neighborhood Map</div>
+          <SidebarMenu onClick={() => {this.toggleSidebar()}} />
+          <div className="sb-app-title">Neighborhood Map</div>
+        </div>
+        <div className={this.sideBarStatus('sb-detail')}>
+          <div className="sb-help">
+            You can filter by a <b>Category</b> or by <b>Place's</b> name.
           </div>
-          <div className={this.sideBarStatus('sb-detail')}>
-            <div className="sb-help">
-              You can filter by a <b>Category</b> or by <b>Place's</b> name.
-            </div>
-        <div className="sb-caption">Categories</div>
+          <div className="sb-caption">Categories</div>
           {this.renderCategoriesFilter()}
           <div className="sb-caption">Places</div>
           {this.renderPlacesFilter()}
         </div>
         <MapContainer 
-            places={this.state.places}
-            selectedPlace={this.state.selectedPlace}
-            onSelectPlace={this.onSelectPlace}
-            onInfowindowClose={this.onInfowindowClose}
-        />
+          places={this.state.places}
+          selectedPlace={this.state.selectedPlace} 
+          onSelectPlace={this.onSelectPlace}
+          onInfowindowClose={this.onInfowindowClose}
+          />
       </div>
     );
   }
