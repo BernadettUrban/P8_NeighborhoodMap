@@ -82,7 +82,7 @@ export class Map extends React.Component {
 
         return (
             <div>
-                <div style={style} ref='map'></div>
+                <div style={style} ref='map' id="map-container" role="application" aria-label="Google Map"></div>
                 {this.renderChildren()}
             </div>
         )

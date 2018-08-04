@@ -52,7 +52,7 @@ class App extends Component {
     let places = PLACES.filter((item) => {
       return this.state.filterCategories.includes(item.type.key);
     });
-    
+
     return places;
   }
   
@@ -170,7 +170,7 @@ class App extends Component {
       <div>
         <div className={this.sideBarStatus('sb-header')}>
           <SidebarMenu onClick={() => {this.toggleSidebar()}} />
-          <div className="sb-app-title">Neighborhood Map</div>
+          <div role="main" className="sb-app-title">Neighborhood Map </div>
         </div>
         <div className={this.sideBarStatus('sb-detail')}>
           <div className="sb-help">

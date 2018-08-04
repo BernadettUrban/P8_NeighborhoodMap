@@ -122,7 +122,7 @@ export class InfoWindow extends React.Component {
         }
 
         if (url) {
-             websiteTemplate = `<a title="Website" class="iw-website" target="_blank" href="${url}"><i class="fas fa-globe"></i></a>`;
+             websiteTemplate = `<a title="Website" class="iw-website" target="_blank" href="${url}"><i class="fas fa-globe"></i></a>`;;
         }
         
         
