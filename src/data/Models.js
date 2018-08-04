@@ -9,7 +9,6 @@ export class PlaceCategory {
 }
 
 export class Place {
-    export class Place {
     constructor(key, title, lat, lng, type, foursquare_id) {
         this.key = key;
         this.title = title;

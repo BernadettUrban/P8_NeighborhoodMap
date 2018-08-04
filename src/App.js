@@ -44,8 +44,6 @@ class App extends Component {
     }
   }*/
      
-  
-
   getPlacesByCategory() {
     if (this.state.filterCategories.length === 0) {
       return PLACES;
