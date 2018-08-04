@@ -37,12 +37,12 @@ class App extends Component {
     }
   }
 
-  /*updatePlacesByPlaces() {
+  updatePlacesByPlaces() {
     if (this.state.selectedPlace === null) {
       this.setState({ places: this.getPlacesByCategory() });
       return;
     }
-  }*/
+  }
      
   getPlacesByCategory() {
     if (this.state.filterCategories.length === 0) {
