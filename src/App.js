@@ -27,7 +27,7 @@ class App extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_prevProps, prevState) {
     if (prevState.filterCategories.length !== this.state.filterCategories.length) {
       this.updatePlacesByCategories();
     }
@@ -50,7 +50,7 @@ class App extends Component {
     }
 
     let places = PLACES.filter((item) => {
-      return this.state.filterCategories.includes(item.type);
+      return this.state.filterCategories.includes(item.type.key);
     });
 
     return places;
@@ -69,7 +69,7 @@ class App extends Component {
     this.setState({ selectedPlace: value });
   }
 
-  removePlaceFromFilter(value) {
+  removePlaceFromFilter(_value) {
     this.setState({
       selectedPlace: null
     });
@@ -114,7 +114,7 @@ class App extends Component {
   }
 
   renderPlacesFilter() {
-    return this.getPlacesByCategory().map((item, index) => {
+    return this.getPlacesByCategory().map((item, _index) => {
       return <ToggleButton
         key={item.key}
         onToggleOn={this.onPlaceToggleOn} 
@@ -129,7 +129,7 @@ class App extends Component {
   }
 
   renderCategoriesFilter() {
-    return CATEGORIES.map((item, index) => {
+    return CATEGORIES.map((item, _index) => {
       return <ToggleButton
         key={item.key}
         onToggleOn={this.onCategoryToggleOn} 
@@ -140,7 +140,7 @@ class App extends Component {
         text={item.title} />
     });
   }
-                               
+
   toggleSidebar() {
     this.setState({
       showSideBar: !this.state.showSideBar
@@ -160,7 +160,7 @@ class App extends Component {
     });
   }
 
-  onInfowindowClose(place) {
+  onInfowindowClose(_place) {
     this.setState({
       selectedPlace: null
     });
@@ -171,7 +171,7 @@ class App extends Component {
       <div>
         <div className={this.sideBarStatus('sb-header')}>
           <SidebarMenu onClick={() => {this.toggleSidebar()}} />
-          <div role="main" className="sb-app-title">Neighborhood Map </div>
+          <div className="sb-app-title" role="main">Neighborhood Map </div>
         </div>
         <div className={this.sideBarStatus('sb-detail')}>
           <div className="sb-help">
