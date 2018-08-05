@@ -50,7 +50,7 @@ class App extends Component {
     }
 
     let places = PLACES.filter((item) => {
-      return this.state.filterCategories.includes(item.type.key);
+      return this.state.filterCategories.includes(item.type);
     });
 
     return places;
@@ -123,7 +123,8 @@ class App extends Component {
         toggled={this.placeIsSelected(item)} 
         id={item}
         icon={item.icon} 
-        text={item.title} />
+        text={item.title} 
+        tabIndex={0} />
     });
   }
 
